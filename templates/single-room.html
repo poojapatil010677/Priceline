@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Roberto - Hotel &amp; Resort HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.png') }}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!-- jQuery 2.2.4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <script type="text/javascript">
+        
+        obj = {
+
+            xhr : new XMLHttpRequest(),
+            getFeatures : function() {
+                this.xhr.onreadystatechange = this.showFeatures;
+                this.xhr.open("GET","room_features.txt",true);
+                this.xhr.send();
+            },
+            showFeatures : function() {
+                if(this.readyState==4 && this.status==200)
+                {
+                    var data = this.responseText;
+                    var ele = document.getElementById("room-features");
+                    ele.innerHTML = data;
+                    setTimeout(obj.getText,1000);
+                }
+            },
+            getText : function(){
+                obj.xhr.onreadystatechange = obj.showText;
+                obj.xhr.open("GET","text_details.txt",true);
+                obj.xhr.send();
+            },
+            showText : function() {
+                if(this.readyState==4 && this.status==200)
+                {
+                    var data1 = (this.responseText).split(";");
+                    var ele1 = document.getElementById("text-details");
+                    var ele3 = document.getElementById("hotel-services");
+                    ele1.innerHTML = data1[0];
+                    ele3.innerHTML = data1[1]
+                    setTimeout(obj.getImages,3000);
+                }
+            },
+            getImages : function() {
+                obj.xhr.onreadystatechange = obj.showImages;
+                obj.xhr.open("GET","images.txt",true);
+                obj.xhr.send();
+            },
+            showImages : function() {
+                 if(this.readyState==4 && this.status==200)
+                {
+                    var data2 = this.responseText;
+                    var ele2 = document.getElementById("images");
+                    ele2.innerHTML = data2;
+                    setTimeout(obj.getReviews,600);
+                }
+            },
+            getReviews : function() {
+                obj.xhr.onreadystatechange = obj.showReviews;
+                obj.xhr.open("GET","review.txt",true);
+                obj.xhr.send();                
+            },
+            showReviews : function() {
+                 if(this.readyState==4 && this.status==200)
+                {
+                    var data4 = this.responseText;
+                    var ele4 = document.getElementById("reviews");
+                    ele4.innerHTML = data4;
+                }                
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body onload="obj.getFeatures()">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Search Form -->
+        <div class="search-form d-flex align-items-center">
+            <div class="container">
+                <form action="index.html" method="get">
+                    <input type="search" name="search-form-input" id="searchFormInput" placeholder="Type your keyword ...">
+                    <button type="submit"><i class="icon_search"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="robertoNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="index.html"><img src="./img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="./index.html">Home</a></li>
+                                    <li><a href="./about.html">About Us</a></li>
+                                    <li><a href="./contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Search -->
+                                <div class="search-btn ml-4">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(img/bg-img/101.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-end">
+                <div class="col-12">
+                    <div class="breadcrumb-content d-flex align-items-center justify-content-between pb-5">
+                        <h2 class="room-title">Hotel Details</h2>
+                        <h2 class="room-price">$180 <span>/ Per Night</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Rooms Area Start -->
+    <div class="roberto-rooms-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <!-- Single Room Details Area -->
+                    <div class="single-room-details-area mb-50">
+                        <!-- Room Thumbnail Slides -->
+                        <div class="room-thumbnail-slides mb-50">
+                            <div id="room-thumbnail--slide" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" id="images">
+                                    <div class="carousel-item active">
+                                    <img src="img/bg-img/48.jpg" class="d-block w-100" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Room Features -->
+                        <div id="room-features">
+
+
+                        </div>
+                        <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms" style="height: 570px;" id="text-details">
+
+                        
+                        </div>
+                </div>
+                    <!-- Room Service -->
+                    <div class="room-service mb-50">
+                        <h4>Hotel Services</h4>
+                        <div id="hotel-services" class="col-lg-12 wow fadeInUp" data-wow-delay="100ms" style="height:120px;">
+                        
+                        </div>
+                    </div>
+
+                    <!-- Room Review -->
+                    <div class="room-review-area mb-100">
+                        <h4>Hotel Review</h4>
+                        <div id="reviews" class="col-lg-12 wow fadeInUp" data-wow-delay="100ms" style="height:370px;">
+                        <!-- Single Review Area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Rooms Area End -->
+
+    <!-- Footer Area Start -->
+    <footer class="footer-area section-padding-80-0">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row align-items-baseline justify-content-between">
+                    <!-- Single Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget mb-80">
+                            <h4>+12 345-678-9999</h4>
+                            <span>Info.colorlib@gmail.com</span>
+                            <span>856 Cordia Extension Apt. 356, Lake Deangeloburgh, South Africa</span>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget mb-80">
+                            <!-- Widget Title -->
+                            <h5 class="widget-title">Our Blog</h5>
+
+                            <!-- Single Blog Area -->
+                            <div class="latest-blog-area">
+                                <a href="#" class="post-title">Freelance Design Tricks How</a>
+                                <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
+                            </div>
+
+                            <!-- Single Blog Area -->
+                            <div class="latest-blog-area">
+                                <a href="#" class="post-title">Free Advertising For Your Online</a>
+                                <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget Area -->
+                    <div class="col-12 col-sm-4 col-lg-2">
+                        <div class="single-footer-widget mb-80">
+                            <!-- Widget Title -->
+                            <h5 class="widget-title">Links</h5>
+
+                            <!-- Footer Nav -->
+                            <ul class="footer-nav">
+                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Our Room</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Career</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget Area -->
+                    <div class="col-12 col-sm-8 col-lg-4">
+                        <div class="single-footer-widget mb-80">
+                            <!-- Widget Title -->
+                            <h5 class="widget-title">Subscribe Newsletter</h5>
+                            <span>Subscribe our newsletter gor get notification about new updates.</span>
+
+                            <!-- Newsletter Form -->
+                            <form action="index.html" class="nl-form">
+                                <input type="email" class="form-control" placeholder="Enter your email...">
+                                <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copywrite Area -->
+        <div class="container">
+            <div class="copywrite-content">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-8">
+                        <!-- Copywrite Text -->
+                        <div class="copywrite-text">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <!-- Social Info -->
+                        <div class="social-info">
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+    <script type="text/javascript">
+         $(document).ready(function()
+        {
+            $(".breadcrumb-area").css("position","relative");
+            $(".breadcrumb-area").css("z-index","1");
+            $(".breadcrumb-area").css("height","300px");
+        });
+    </script>
+
+    <!-- Popper -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- All Plugins -->
+    <script src="js/roberto.bundle.js"></script>
+    <!-- Active -->
+    <script src="js/default-assets/active.js"></script>
+
+</body>
+
+</html>
