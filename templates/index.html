@@ -18,6 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- jQuery 2.2.4 -->
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    
 </head>
 
 <body>
@@ -158,48 +159,58 @@
         <!-- Hotel Search Form Area -->
         <div class="hotel-search-form-area">
             <div class="container-fluid">
-                <div class="hotel-search-form">
+                <div class="hotel-search-form" id="main_div">
 
 
                     <form action="/hotels" method="post">
-                        <div class="row justify-content-between align-items-end">
-                            <div class="col-6 col-md-2 col-lg-3">
+                        <div class="row justify-content-between ">
+                            <div class="col-6 col-md-2 col-lg-6">
                                 <label for="destination">Destination</label>
-                                <input type="text" class="form-control" id="Destination" name="Destination">
+                                <input type="text" onkeydown="obj.getTerm()" class="form-control" id="dest" name="city">
                             </div>
-                            <div class="col-6 col-md-2 col-lg-3">
+                         <!--   <div class="col-6 col-md-2 col-lg-4">
                                 <label for="checkIn">Check In</label>
                                 <input type="date" class="form-control" id="checkIn" name="checkin-date">
                             </div>
-                            <div class="col-6 col-md-2 col-lg-3">
+                            <div class="col-6 col-md-2 col-lg-4">
                                 <label for="checkOut">Check Out</label>
                                 <input type="date" class="form-control" id="checkOut" name="checkout-date">
-                            </div>
+                            </div>-->
+
+                            <div class="col-4 col-md-2 col-lg-6">
+                                <label for="property">Property Type</label>
+                                <select name="property" id="property" class="form-control">
+                                    <option value="Hotel">Hotel</option>
+                                    <option value="Resort">Resort</option>
+                                    <option value="Guest House">Guest House</option>
+                                    <option value="Service Apartment">Service Apartment</option>
+                                    <option value="Villa">Villa</option>
+                                    <option value="Homestay">Homestay</option>
+                                </select>
+                            </div> 
                             
-                            <div class="col-4 col-md-1">
-                                <label for="adults">Adult</label>
-                                <select name="adults" id="adults" class="form-control">
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03</option>
-                                    <option value="04">04</option>
-                                    <option value="05">05</option>
-                                    <option value="06">06</option>
-                                </select>
+                            <div class="col-4 col-md-2">
+                                <label for="Facility">Facilities :</label>
                             </div>
-                            <div class="col-4 col-md-2 col-lg-1">
-                                <label for="children">Children</label>
-                                <select name="children" id="children" class="form-control">
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03</option>
-                                    <option value="04">04</option>
-                                    <option value="05">05</option>
-                                    <option value="06">06</option>
-                                </select>
+                            <div class="col-3 col-md-2">
+                                    <input type="checkbox" name="Internet" value="Internet">
+                                    <label for="Internet">Internet</label>
                             </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="form-control btn roberto-btn w-100" style="margin-left: 350px;">Search</button>
+                             <div class="col-3 col-md-3">
+                                    <input type="checkbox" name="pool" value="Pool">
+                                    <label for="pool">Swimming Pool</label>
+                            </div>
+                             <div class="col-3 col-md-2">
+                                    <input type="checkbox" name="Gym" value="Gym">
+                                    <label for="Gym">Gym</label>
+                            </div>
+                             <div class="col-3 col-md-2">
+                                    <input type="checkbox" name="Restaurant" value="Restaurant">
+                                    <label for="Restaurant">Restaurant</label>
+                            </div>
+
+                            <div class="col-12 col-md-3" style="margin-left: 350px;margin-top: 30px;" >
+                                <button type="submit" class="form-control btn roberto-btn w-100" >Search</button>
                             </div>
                         </div>
                     </form>
@@ -244,6 +255,7 @@
             </div>
         </div>
     </section>
+    <div id="sub_div" style="position:relative;left:600px;top:-88px;"></div>
     <!-- About Us Area End -->
 
     <!-- Projects Area Start -->
@@ -649,7 +661,74 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ url_for('static', filename='js/roberto.bundle.js') }}"></script>
     <!-- Active -->
     <script src="{{ url_for('static', filename='js/default-assets/active.js') }}"></script>
+<script type="text/javascript">
+    function Suggest(){
+      this.xhr=new XMLHttpRequest();
+            tempObj=this;
+      this.search=null;
+            this.timer=null;
+      this.getTerm = function()
+      {
+        //console.log("hi");
+        if(tempObj.timer){
+                    clearTimeout(tempObj.timer);
+        }
+                tempObj.timer=setTimeout(tempObj.sendTerm);
+      }
 
+      this.sendTerm=function(){
+        //console.log("hi");
+                tempObj.search=document.getElementById("dest");
+        //console.log(tempObj.search);
+                if(localStorage.getItem(tempObj.search.value)!=null){
+                    tempObj.populateFood(localStorage.getItem(tempObj.search.value).split(","));
+                }
+        else{
+          tempObj.xhr.open("GET","http://localhost/roberto/index_server.php?term="+document.getElementById("dest").value,true)
+          tempObj.xhr.onreadystatechange=tempObj.displayResults;
+          tempObj.xhr.send();
+        }
+     }
+     this.displayResults=function(){
+       if(this.readyState==4 && this.status==200){
+         tempObj.search=document.getElementById("dest");
+         //console.log(this.responseText);
+         var resjson=JSON.parse(this.responseText);
+         //console.log(resjson);
+         if(resjson.length==0){
+           tempObj.search.value="No results found";
+         }
+         else{
+           tempObj.populateFood(resjson);
+           localStorage.setItem(tempObj.search.value,resjson);
+         }
+       }
+     }
+     this.populateFood=function(items){
+
+       var container=document.getElementById("main_div");
+       var subb=document.getElementById("sub_div");
+       subb.innerHTML="";
+       for(var i=0;i<items.length;i++){
+         var itemdiv=document.createElement("div");
+         itemdiv.id = "options";
+         itemdiv.innerHTML=items[i];
+         subb.appendChild(itemdiv);
+         container.appendChild(subb);
+         itemdiv.onclick=function(e){
+           tempObj.search.value=e.target.innerHTML;
+           tempObj.afterCLick();
+         }
+       }
+     }
+     this.afterCLick = function(){
+         var cont=document.getElementById("sub_div");
+         cont.innerHTML="";
+     }
+   }
+   window.localStorage.clear();
+    var obj = new Suggest();
+    </script>
 </body>
 
 </html>

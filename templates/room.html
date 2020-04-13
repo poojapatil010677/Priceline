@@ -371,30 +371,45 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             $("#h4-img").attr("src","{{ url_for('static', filename='img/bg-img/46.jpg') }}");
             $("#h5-img").attr("src","{{ url_for('static', filename='img/bg-img/47.jpg') }}");
         });
+
+        var h1_name = '{{ res[0][0] }}';
+        var h2_name = '{{ res[0][1] }}';
+        var h3_name = '{{ res[0][2] }}';
+        var h4_name = '{{ res[0][3] }}';
+        var h5_name = '{{ res[0][4] }}';
+
+
         $(document).ready(function()
         {
-           $("#h1-name").text("Room View Sea");
-           $("#h2-name").text("Small Room");
-           $("#h3-name").text("Premium King Room");
-           $("#h4-name").text("Room Vip King");
-           $("#h5-name").text("Royal Room");
+           $("#h1-name").text(h1_name);
+           $("#h2-name").text(h2_name);
+           $("#h3-name").text(h3_name);
+           $("#h4-name").text(h4_name);
+           $("#h5-name").text(h5_name);
         });
         $(document).ready(function()
         {
-            $("#h1-price").html("400$ <span>/ Day</span>");
-            $("#h2-price").html("400$ <span>/ Day</span>");
-            $("#h3-price").html("400$ <span>/ Day</span>");
-            $("#h4-price").html("400$ <span>/ Day</span>");
-            $("#h5-price").html("400$ <span>/ Day</span>");
+            $("#h1-price").html("&#x20B9 4,651 <span>/ Day</span>");
+            $("#h2-price").html("&#x20B9 4,840 <span>/ Day</span>");
+            $("#h3-price").html("&#x20B9 3,600 Day</span>");
+            $("#h4-price").html("&#x20B9 2,740 <span>/ Day</span>");
+            $("#h5-price").html("&#x20B9 1,800 <span>/ Day</span>");
 
         });
+
+        var h1_service = '{{ ", ".join(res[1][0].split("|")) }}';
+        var h2_service = '{{ ", ".join(res[1][1].split("|")) }}';
+        var h3_service = '{{ ", ".join(res[1][2].split("|")) }}';
+        var h4_service = '{{ ", ".join(res[1][3].split("|")) }}';
+        var h5_service = '{{ ", ".join(res[1][4].split("|")) }}';
+
         $(document).ready(function()
         {
-            $("#h1-service span").text("Wifi, Television ...");
-            $("#h2-service span").text("Wifi, Television ...");
-            $("#h3-service span").text("Wifi, Television ...");
-            $("#h4-service span").text("Wifi, Television ...");
-            $("#h5-service span").text("Wifi, Television ...");
+            $("#h1-service span").text(h1_service);
+            $("#h2-service span").text(h2_service);
+            $("#h3-service span").text(h3_service);
+            $("#h4-service span").text(h4_service);
+            $("#h5-service span").text(h5_service);
         })
         
     </script>
