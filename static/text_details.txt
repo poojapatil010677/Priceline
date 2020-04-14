@@ -1,0 +1,14 @@
+<p>The standard check-in time is 12:00 PM and the standard check-out time is 10:00 AM. Early check-in or late check-out is strictly subjected to availability and may be chargeable by the hotel. Any early check-in or late check-out request must be directed and reconfirmed with hotel directly Photo identity is mandatory for all the guest who crossed their minority Pan card is not valid as photo identity pets not allowed Swimming costumes is mandatory for entering swimming pool</p>
+<h5> Points of Interest </h5>
+<p> Anjuna Area | Anjuna Beach | Calangute Beach | Titos lane, baga | Baga Beach | North Goa | Vagator Beach </p>
+<h5> Hotel Facilities </h5>
+<p>Swimming Pool| Airport Transfer Available / Surcharge| Banquet Facilities| Bar / Lounge | Business Center | Disabled Friendly Facilities | Doctor on Call|Dry Cleaning | Laundry Service Available | Lobby | Non Smoking Rooms | Parking Facilities Available | Front Desk | Multi Cuisine Restaurant | 24 Hour Front Desk | Luggage Storage | Medical Assistance Available | Welcome Drinks | Power Backup | Conference Facility | Free Local Calls | Picnic Area | Nature Walk | Express Laundry | Taxi Services | Newspapers In Lobby | Room Service (24 Hours)| Cook Services | Party hall | Parking Facility</p>;
+
+<ul>
+<li><img src="/static/img/core-img/icon1.png" alt=""> Air Conditioning</li>
+<li><img src="/static/img/core-img/icon2.png" alt=""> Free drinks</li>
+<li><img src="/static/img/core-img/icon3.png" alt=""> Restaurant quality</li>
+<li><img src="/static/img/core-img/icon4.png" alt=""> Cable TV</li>
+<li><img src="/static/img/core-img/icon5.png" alt=""> Unlimited Wifi</li>
+<li><img src="/static/img/core-img/icon6.png" alt=""> Service 24/7</li>
+</ul>

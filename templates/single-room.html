@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Roberto - Hotel &amp; Resort HTML Template</title>
+    <title>Priceline</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.png') }}">
@@ -26,7 +26,7 @@
             xhr : new XMLHttpRequest(),
             getFeatures : function() {
                 this.xhr.onreadystatechange = this.showFeatures;
-                this.xhr.open("GET","room_features.txt",true);
+                this.xhr.open("GET","{{ url_for('static',filename='room_features.txt') }}",true);
                 this.xhr.send();
             },
             showFeatures : function() {
@@ -40,7 +40,7 @@
             },
             getText : function(){
                 obj.xhr.onreadystatechange = obj.showText;
-                obj.xhr.open("GET","text_details.txt",true);
+                obj.xhr.open("GET","{{ url_for('static',filename='text_details.txt') }}",true);
                 obj.xhr.send();
             },
             showText : function() {
@@ -56,7 +56,7 @@
             },
             getImages : function() {
                 obj.xhr.onreadystatechange = obj.showImages;
-                obj.xhr.open("GET","images.txt",true);
+                obj.xhr.open("GET","{{ url_for('static',filename='images.txt') }}",true);
                 obj.xhr.send();
             },
             showImages : function() {
@@ -70,7 +70,7 @@
             },
             getReviews : function() {
                 obj.xhr.onreadystatechange = obj.showReviews;
-                obj.xhr.open("GET","review.txt",true);
+                obj.xhr.open("GET","{{ url_for('static',filename='review.txt') }}",true);
                 obj.xhr.send();                
             },
             showReviews : function() {
@@ -83,6 +83,8 @@
             }
 
         }
+
+    </script>
 
     </script>
 
@@ -115,7 +117,7 @@
                     <nav class="classy-navbar justify-content-between" id="robertoNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" href="index.html"><img src="./img/core-img/logo.png" alt=""></a>
+                        <a class="nav-brand" href="{{ url_for('getHome') }}"><img src="{{ url_for('static', filename='/img/core-img/logo.png') }}" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -131,9 +133,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul id="nav">
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li><a href="./about.html">About Us</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
+                                    <li class="active"><a href="{{ url_for('getHome') }}">Home</a></li>
+                                    <li><a href="{{ url_for('getAbout') }}">About Us</a></li>
+                                    <li><a href="{{ url_for('getContact') }}">Contact</a></li>
                                 </ul>
 
                                 <!-- Search -->
@@ -151,13 +153,12 @@
     <!-- Header Area End -->
 
     <!-- Breadcrumb Area Start -->
-    <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(img/bg-img/101.jpg);">
+    <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ url_for('static', filename='/img/bg-img/101.jpg') }});">
         <div class="container h-100">
             <div class="row h-100 align-items-end">
                 <div class="col-12">
                     <div class="breadcrumb-content d-flex align-items-center justify-content-between pb-5">
-                        <h2 class="room-title">Hotel Details</h2>
-                        <h2 class="room-price">$180 <span>/ Per Night</span></h2>
+                        <h2 class="room-title" id="hot_name">Hotel Details</h2>
                     </div>
                 </div>
             </div>
@@ -177,7 +178,7 @@
                             <div id="room-thumbnail--slide" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner" id="images">
                                     <div class="carousel-item active">
-                                    <img src="img/bg-img/48.jpg" class="d-block w-100" alt="">
+                                    <img src="{{ url_for('static', filename='img/bg-img/48.jpg') }}" class="d-block w-100" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -320,13 +321,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </script>
 
     <!-- Popper -->
-    <script src="js/popper.min.js"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <!-- All Plugins -->
-    <script src="js/roberto.bundle.js"></script>
+    <script src="{{ url_for('static', filename='js/roberto.bundle.js') }}"></script>
     <!-- Active -->
-    <script src="js/default-assets/active.js"></script>
+    <script src="{{ url_for('static', filename='js/default-assets/active.js') }}"></script>
 
 </body>
 

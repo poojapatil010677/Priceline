@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Roberto - Hotel &amp; Resort HTML Template</title>
+    <title>Priceline</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.png') }}">
@@ -48,7 +48,7 @@
                     <nav class="classy-navbar justify-content-between" id="robertoNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" href="index.html"><img src="{{ url_for('static', filename='img/core-img/logo.png') }}" alt=""></a>
+                        <a class="nav-brand" href="{{ url_for('getHome') }}"><img src="{{ url_for('static', filename='img/core-img/logo.png') }}" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -64,9 +64,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul id="nav">
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li class="about-link"><a href="./about.html">About Us</a></li>
-                                    <li class="contact-link"><a href="./contact.html">Contact</a></li>
+                                    <li class="active"><a href="{{ url_for('getHome') }}">Home</a></li>
+                                    <li class="about-link"><a href="{{ url_for('getAbout') }}">About Us</a></li>
+                                    <li class="contact-link"><a href="{{ url_for('getContact') }}">Contact</a></li>
                                 </ul>
 
                                 <!-- Search -->
@@ -118,7 +118,10 @@
                             <div class="room-feature">
                                 <h6 id="h1-service">Services:<span></span></h6>
                             </div>
-                            <a href="./single-room.html" class="btn view-detail-btn">View Details <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                            <form action="/details" method="post" >
+                            <input type="text" name="info" style="display: none;" id="h1-info">
+                            <button class="btn view-detail-btn">View Details <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                            </form>
                         </div>
                     </div>
 
@@ -188,67 +191,6 @@
                             </div>
                             <a href="./single-room.html" class="btn view-detail-btn">View Details <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-4">
-                    <!-- Hotel Reservation Area -->
-                    <div class="hotel-reservation--area mb-100">
-                        <form action="#" method="post">
-                            <div class="form-group mb-30">
-                                <label for="checkInDate">Date</label>
-                                <div class="input-daterange" id="datepicker">
-                                    <div class="row no-gutters">
-                                        <div class="col-6">
-                                            <input type="text" class="input-small form-control" id="checkInDate" name="checkInDate" placeholder="Check In">
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="input-small form-control" name="checkOutDate" placeholder="Check Out">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mb-30">
-                                <label for="guests">Guests</label>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <select name="adults" id="guests" class="form-control">
-                                            <option value="adults">Adults</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <select name="children" id="children" class="form-control">
-                                            <option value="children">Children</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mb-50">
-                                <div class="slider-range">
-                                    <div class="range-price">Max Price: $0 - $3000</div>
-                                    <div data-min="0" data-max="3000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="0" data-value-max="3000" data-label-result="Max Price: ">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn roberto-btn w-100">Check Available</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -365,11 +307,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
         $(document).ready(function()
         {
-            $("#h1-img").attr("src","{{ url_for('static', filename='img/bg-img/43.jpg') }}");
-            $("#h2-img").attr("src","{{ url_for('static', filename='img/bg-img/44.jpg') }}");
-            $("#h3-img").attr("src","{{ url_for('static', filename='img/bg-img/45.jpg') }}");
-            $("#h4-img").attr("src","{{ url_for('static', filename='img/bg-img/46.jpg') }}");
-            $("#h5-img").attr("src","{{ url_for('static', filename='img/bg-img/47.jpg') }}");
+            $("#h1-img").attr("src","{{ url_for('static', filename='img/bg-img/goa1.jpg') }}");
+            $("#h2-img").attr("src","{{ url_for('static', filename='img/bg-img/goa2.jpg') }}");
+            $("#h3-img").attr("src","{{ url_for('static', filename='img/bg-img/goa3.jpg') }}");
+            $("#h4-img").attr("src","{{ url_for('static', filename='img/bg-img/goa4.jpg') }}");
+            $("#h5-img").attr("src","{{ url_for('static', filename='img/bg-img/goa5.jpg') }}");
         });
 
         var h1_name = '{{ res[0][0] }}';
@@ -411,6 +353,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             $("#h4-service span").text(h4_service);
             $("#h5-service span").text(h5_service);
         })
+
+        var h1_info = '{{ res }}';
+        $("#h1-info").val(h1_info);
         
     </script>
 
